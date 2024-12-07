@@ -1,4 +1,4 @@
-lists = [list(map(int, l.split())) for l in open("input_test.txt").read().splitlines()]
+lists = [list(map(int, l.split())) for l in open("input.txt").read().splitlines()]
 
 print(lists)
 
@@ -8,4 +8,4 @@ for l in lists:
     valid = all(0 < d <= 3 for d in differences) or all(-3 <= d < 0 for d in differences)
     if valid:
         count = count + 1
-print(count)
+print(count) #663
