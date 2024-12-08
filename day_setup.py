@@ -1,8 +1,11 @@
 import datetime, os, re
 import requests
+import pytz
 
-year = datetime.datetime.now().year
-day = datetime.datetime.now().day
+current_time = datetime.datetime.now(pytz.timezone('US/Eastern'))
+print("Time is " + current_time.strftime("%Y-%m-%d %H:%M:%S"))
+year = current_time.year
+day = current_time.day
 
 input_path = "day{:02d}/input.txt".format(day)
 with open("cookies.txt", "r") as file:
