@@ -1,4 +1,4 @@
-lines = open("input.txt").read().splitlines()
+lines = open("input_test.txt").read().splitlines()
 
 print(lines)
 
@@ -38,7 +38,7 @@ print(antinodes)
 def in_map(point):
     return 0 <= point[0] < len(lines) and 0 <= point[1] < len(lines[0])
 
-total = sum(1 for x in antinodes if in_map(x) and x not in [p for p in dict_freq.values()])
+total = sum(1 for x in antinodes if in_map(x))
 antinodes2 = []
 for x in antinodes:
     if not in_map(x):
