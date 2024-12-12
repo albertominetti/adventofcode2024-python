@@ -1,6 +1,7 @@
-grid = [s.strip() for s in open("input.txt").read().splitlines()]
+grid = [s.strip() for s in open("input_test.txt").read().splitlines()]
 ROWS = len(grid)
 COLS = len(grid[0])
+DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 print(grid, ROWS, COLS)
 
 
@@ -10,7 +11,6 @@ def dfs(p):
     visited.add(p)
 
     x, y = p
-    DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     r = {p}
     for d in DIRECTIONS:
         x1, y1 = x + d[0], y + d[1]
@@ -31,25 +31,20 @@ for x in range(ROWS):
                 regions.add(frozenset(region))
 
 
-def count_borders(p):
-    x, y = p
-    DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-    num = 0
-    for d in DIRECTIONS:
-        x1, y1 = x + d[0], y + d[1]
-        if 0 <= x1 < ROWS and 0 <= y1 < COLS and grid[x1][y1] != grid[x][y]:
-            num += 1
-        if not 0 <= x1 < ROWS or not 0 <= y1 < COLS:
-            num += 1
-    return num
+def count_borders(region):
+    perimeter = 0
+    for x, y in region:
+        for d in DIRECTIONS:
+            x1, y1 = x + d[0], y + d[1]
+            if (x1, y1) not in region:
+                perimeter += 1
+    return perimeter
 
 
 total = 0
 for region in regions:
     area = len(region)
-    perimeter = 0
-    for p in region:
-        perimeter += count_borders(p)
+    perimeter = count_borders(region)
     total += area * perimeter
 
 print(total) # 140
