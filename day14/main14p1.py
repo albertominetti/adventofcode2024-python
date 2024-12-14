@@ -1,4 +1,6 @@
 import re
+from functools import reduce
+from operator import mul
 
 in_file = open("input.txt").read().splitlines()
 
@@ -35,8 +37,5 @@ for line in in_file:
 
 print("Quadrants: ", quadrants)
 
-saf_factor = 1
-for idx, quadrant in enumerate(quadrants):
-    print(f"Quad {idx} contains {quadrant} robots")
-    saf_factor *= quadrant
+saf_factor = reduce(mul, quadrants, 1)
 print(saf_factor)  # 225552000
