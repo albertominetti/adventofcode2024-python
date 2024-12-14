@@ -3,9 +3,11 @@ import re
 in_file = open("input.txt").read().splitlines()
 
 ROWS, COLS = 103, 101
-#ROWS, COLS = 11, 7
+# ROWS, COLS = 11, 7
+HALF_COLS = COLS // 2
+HALF_ROWS = ROWS // 2
 
-quadrants = [0,0,0,0]
+quadrants = [0, 0, 0, 0]
 for line in in_file:
     x, y, vx, vy = list(map(int, re.findall(r"-?\d+", line)))
     print(f"Robot {x, y, vx, vy}", end="")
@@ -13,8 +15,6 @@ for line in in_file:
     new_y = (y + 100 * vy) % ROWS
     print(f" moves in {new_x, new_y}", end="")
 
-    HALF_COLS = (COLS-1) // 2
-    HALF_ROWS = (ROWS-1) // 2
     if new_x == HALF_COLS:
         print(f" in the center row")
     if new_y == HALF_ROWS:
@@ -39,4 +39,4 @@ saf_factor = 1
 for idx, quadrant in enumerate(quadrants):
     print(f"Quad {idx} contains {quadrant} robots")
     saf_factor *= quadrant
-print(saf_factor) #225552000
+print(saf_factor)  # 225552000
