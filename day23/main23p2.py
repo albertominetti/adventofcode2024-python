@@ -28,5 +28,5 @@ while computers_groups:
     computers_groups = computers_groups_with_one_more
 
 print(computers_groups)
-print(",".join(computers_groups[0]))
+print(",".join(next(iter(computers_groups)))) # av,fr,gj,hk,ii,je,jo,lq,ny,qd,uq,wq,xc
 #print(",".join(group))
